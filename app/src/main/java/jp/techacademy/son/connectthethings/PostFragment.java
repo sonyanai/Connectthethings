@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 /**
  * Created by taiso on 2018/04/03.
@@ -18,6 +19,7 @@ public class PostFragment extends Fragment {
 
     ImageView selectedImageView;
     EditText contentsEditText;
+    Spinner spinner;
     Button sendButton;
 
 
@@ -28,6 +30,7 @@ public class PostFragment extends Fragment {
 
         selectedImageView = (ImageView)v.findViewById(R.id.selectedImage);
         contentsEditText = (EditText)v.findViewById(R.id.contentsEditText);
+        spinner = (Spinner)v.findViewById(R.id.spinner);
         sendButton = (Button)v.findViewById(R.id.sendButton);
 
         return v;
@@ -38,10 +41,20 @@ public class PostFragment extends Fragment {
 
 
 
+        view.findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+
+                //画像取得spinner取得contents取得データベースに投げる
 
 
 
+
+            }
+        });
     }
+
 
 
 }

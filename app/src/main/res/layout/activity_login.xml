@@ -23,6 +23,12 @@
         android:hint="パスワード(6文字以上)"
         android:id="@+id/passwordText"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ユーザー名を入力"
+        android:id="@+id/UserNameEditText"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by taiso on 2018/04/03.
  */
@@ -28,11 +31,16 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText mEmailEditText;
     EditText mPasswordEditText;
+    EditText UserNameEditText;
+
+    String key;
+    String UserName;
 
     FirebaseAuth mAuth;
     OnCompleteListener<AuthResult> mCreateAccountListener;
     OnCompleteListener<AuthResult> mLoginListener;
     DatabaseReference mDataBaseReference;
+    DatabaseReference userRef;
 
     // アカウント作成時にフラグを立て、ログイン処理後に名前をFirebaseに保存する
     boolean mIsCreateAccount = false;
@@ -108,6 +116,38 @@ public class LoginActivity extends AppCompatActivity {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
 
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    userRef = mDataBaseReference.child(Const.UsersPATH);
+                    String mUid = user.getUid();
+                    UserName = UserNameEditText.getText().toString();
+                    Map<String,String> data = new HashMap<String,String>();
+
+                    String Follow = "0";
+                    String Follower = "0";
+                    String PostCount = "0";
+                    String Evaluation = "0";
+                    String EvaluationPeople = "0";
+
+                    key = userRef.push().getKey();
+
+
+                    data.put("mUid",mUid);
+                    data.put("UserName",UserName);
+                    data.put("key",key);
+                    data.put("Follow",Follow);
+                    data.put("Follower",Follower);
+                    data.put("PostCount",PostCount);
+                    data.put("Evaluation",Evaluation);
+                    data.put("EvaluationPeople",EvaluationPeople);
+
+                    Map<String,Object> childUpdates = new HashMap<>();
+                    childUpdates.put(key,data);
+                    userRef.updateChildren(childUpdates);
+
+
+
+
+
                 } else {
 
                     // 失敗した場合
@@ -131,7 +171,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     // 成功した場合
                     FirebaseUser user = mAuth.getCurrentUser();
-                    DatabaseReference userRef = mDataBaseReference.child(Const.UsersPATH).child(user.getUid());
+
+
+
 
                 } else {
                     // 失敗した場合
@@ -147,6 +189,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailEditText = (EditText) findViewById(R.id.emailText);
         mPasswordEditText = (EditText) findViewById(R.id.passwordText);
+        UserNameEditText = (EditText) findViewById(R.id.UserNameEditText);
+
 
         Button createButton = (Button) findViewById(R.id.createButton);
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // アカウントを作成する
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener);
-
+        UserName = UserNameEditText.getText().toString();
    /*     //動画開始？
         if (mRewardedVideoAd.isLoaded()) {
             mRewardedVideoAd.show();

@@ -1,8 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFF00"
+            android:id="@+id/selectedImage"/>
+        <!---押したときに画像選択その画像のリサイズ，上のwidth,heightのサイズ指定-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selectedImage"
+            android:layout_marginTop="20dp"
+            android:hint="画像の説明をしよう"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/contentsEditText"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contentsEditText"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:entries="@array/list"
+            android:spinnerMode="dialog"
+            android:id="@+id/spinner">
+        </Spinner>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="送信"
+            android:id="@+id/sendButton"/>
+
+    </RelativeLayout>
+
+
+
+
+</ScrollView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_TimeLine"
+            android:title="t"
+            android:icon="@drawable/common_google_signin_btn_icon_dark"/>
+        <!--android:icon="@drawable/ic_search"-->
+        <item
+            android:id="@+id/item_Search"
+            android:title="f"
+            android:icon="@drawable/common_google_signin_btn_icon_dark"/>
+        <item
+            android:id="@+id/item_Notification"
+            android:title="n"
+            android:icon="@drawable/common_google_signin_btn_icon_dark"/>
+        <item
+            android:id="@+id/item_Message"
+            android:title="m"
+            android:icon="@drawable/common_google_signin_btn_icon_dark"/>
+        <item
+            android:id="@+id/item_Profile"
+            android:title="p"
+            android:icon="@drawable/common_google_signin_btn_icon_dark"/>
+
+    </group>
+</menu>

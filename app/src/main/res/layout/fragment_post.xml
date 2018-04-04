@@ -35,14 +35,24 @@
             android:spinnerMode="dialog"
             android:id="@+id/spinner">
         </Spinner>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
             android:layout_marginTop="20dp"
+            android:layout_below="@+id/spinner"
             android:layout_centerHorizontal="true"
             android:text="送信"
             android:id="@+id/sendButton"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/backTextView"
+            android:layout_below="@+id/sendButton"
+            android:paddingLeft="25dp"
+            android:textColor="#0000ff"
+            android:text="戻る"/>
 
     </RelativeLayout>
 

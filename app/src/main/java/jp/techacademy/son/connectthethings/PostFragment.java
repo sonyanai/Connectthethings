@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,6 +47,7 @@ public class PostFragment extends Fragment {
     int idx;
     String key;
     String mUid;
+    TextView backText;
 
     FirebaseUser user;
     DatabaseReference databaseReference;
@@ -62,6 +64,8 @@ public class PostFragment extends Fragment {
         contentsEditText = (EditText)v.findViewById(R.id.contentsEditText);
         spinner = (Spinner)v.findViewById(R.id.spinner);
         sendButton = (Button)v.findViewById(R.id.sendButton);
+        backText = (TextView)v.findViewById(R.id.backTextView);
+
 
         return v;
     }
@@ -91,6 +95,17 @@ public class PostFragment extends Fragment {
 
 
 
+            }
+        });
+
+        backText.setClickable(true);
+        backText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimeLineFragment fragmentTimeLine = new TimeLineFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentTimeLine,TimeLineFragment.TAG)
+                        .commit();
             }
         });
 

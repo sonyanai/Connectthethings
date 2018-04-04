@@ -117,8 +117,8 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
 
                     FirebaseUser user = mAuth.getCurrentUser();
-                    userRef = mDataBaseReference.child(Const.UsersPATH);
                     String mUid = user.getUid();
+                    userRef = mDataBaseReference.child(Const.UsersPATH);
                     UserName = UserNameEditText.getText().toString();
                     Map<String,String> data = new HashMap<String,String>();
 
@@ -128,14 +128,13 @@ public class LoginActivity extends AppCompatActivity {
                     String Evaluation = "0";
                     String EvaluationPeople = "0";
                     String FavArea = "未入力";
-                    String Comment = "";
+                    String Comment = "未入力";
+                    String iconBitmapString = "未設定";
 
-                    key = userRef.push().getKey();
 
 
                     data.put("mUid",mUid);
                     data.put("UserName",UserName);
-                    data.put("key",key);
                     data.put("Follow",Follow);
                     data.put("Follower",Follower);
                     data.put("PostCount",PostCount);
@@ -143,9 +142,10 @@ public class LoginActivity extends AppCompatActivity {
                     data.put("EvaluationPeople",EvaluationPeople);
                     data.put("FavArea",FavArea);
                     data.put("Comment",Comment);
+                    data.put("IconBitmapString",iconBitmapString);
 
                     Map<String,Object> childUpdates = new HashMap<>();
-                    childUpdates.put(key,data);
+                    childUpdates.put(mUid,data);
                     userRef.updateChildren(childUpdates);
 
 
@@ -172,10 +172,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログインに成功しました", Snackbar.LENGTH_LONG).show();
-
-                    // 成功した場合
-                    FirebaseUser user = mAuth.getCurrentUser();
-
 
 
 

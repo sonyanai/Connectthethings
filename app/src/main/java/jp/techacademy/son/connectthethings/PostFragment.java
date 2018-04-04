@@ -145,6 +145,7 @@ public class PostFragment extends Fragment {
                             datas.put("Contents",Contents);
                             datas.put("bitmapString",bitmapString);
                             datas.put("Exclusion",Exclusion);
+                            datas.put("mUid",mUid);
 
                             Map<String, Object> childUpdates = new HashMap<>();
                             childUpdates.put(key, datas);

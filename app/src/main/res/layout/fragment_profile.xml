@@ -4,38 +4,46 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="15dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:background="#FFFF00"
         android:padding="10dp"
-        android:id="@+id/icon"/>
+        android:id="@+id/iconImageView"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/icon"
-        android:id="@+id/FavArea"/>
+        android:paddingLeft="40dp"
+        android:layout_toRightOf="@+id/iconImageView"
+        android:id="@+id/FavAreaTextView"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Follow"/>
+        android:layout_below="@+id/iconImageView"
+        android:paddingLeft="20dp"
+        android:id="@+id/FollowTextView"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Follower"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Evaluation"/>
+        android:layout_below="@+id/iconImageView"
+        android:layout_toRightOf="@+id/FollowTextView"
+        android:id="@+id/FollowerTextView"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/comment"/>
+        android:layout_below="@+id/FavAreaTextView"
+        android:id="@+id/EvaluationTextView"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FollowTextView"
+        android:id="@+id/commentTextView"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/PersonalList">
-
 
     </ListView>
 

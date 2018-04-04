@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment {
     TextView FollowTextView;
     TextView FollowerTextView;
     TextView EvaluationTextView;
+    TextView EvaluationPeopleTextView;
     TextView commentTextView;
     String comment;
     ListView PersonalList;
@@ -65,6 +66,7 @@ public class ProfileFragment extends Fragment {
         FollowTextView = (TextView)v.findViewById(R.id.FollowTextView);
         FollowerTextView = (TextView)v.findViewById(R.id.FollowerTextView);
         EvaluationTextView = (TextView)v.findViewById(R.id.FollowTextView);
+        EvaluationPeopleTextView = (TextView)v.findViewById(R.id.EvaluationPeopleTextView);
         commentTextView = (TextView)v.findViewById(R.id.commentTextView);
         PersonalList = (ListView)v.findViewById(R.id.PersonalList);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -105,11 +107,12 @@ public class ProfileFragment extends Fragment {
                         comment = userdata.getComment();
                         mImage = userdata.getIconBitmapString();
 
-                        FavAreaTextView.setText(userdata.getFavArea());
-                        FollowTextView.setText(userdata.getFollow());
-                        FollowerTextView.setText(userdata.getFollower());
-                        EvaluationTextView.setText(userdata.getEvaluation());
-                        commentTextView.setText(comment);
+                        FavAreaTextView.setText("好きな分野"+userdata.getFavArea());
+                        FollowTextView.setText("add"+userdata.getFollow());
+                        FollowerTextView.setText("added"+userdata.getFollower());
+                        EvaluationTextView.setText("評価"+userdata.getEvaluation());
+                        EvaluationPeopleTextView.setText("評価した人数"+userdata.getEvaluationPeople());
+                        commentTextView.setText("コメント"+comment);
 
 
                         byte[] bytes = Base64.decode(mImage,Base64.DEFAULT);

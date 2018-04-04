@@ -15,35 +15,50 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="40dp"
+        android:layout_alignTop="@+id/iconImageView"
         android:layout_toRightOf="@+id/iconImageView"
         android:id="@+id/FavAreaTextView"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iconImageView"
-        android:paddingLeft="20dp"
+        android:layout_alignBottom="@+id/iconImageView"
+        android:layout_toRightOf="@+id/iconImageView"
+        android:padding="15dp"
+        android:text="hyouka"
         android:id="@+id/FollowTextView"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iconImageView"
+        android:layout_alignBottom="@+id/iconImageView"
         android:layout_toRightOf="@+id/FollowTextView"
         android:id="@+id/FollowerTextView"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/FavAreaTextView"
+        android:layout_above="@+id/FollowTextView"
         android:id="@+id/EvaluationTextView"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/EvaluationTextView"
+        android:id="@+id/EvaluationPeopleTextView"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/FollowTextView"
         android:id="@+id/commentTextView"/>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/commentTextView"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/PersonalList">
+        android:id="@+id/PersonalList"
+        android:layout_below="@+id/commentTextView"
+        android:layout_marginTop="5dp">
 
     </ListView>
 

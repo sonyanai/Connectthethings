@@ -134,8 +134,9 @@ public class PostFragment extends Fragment {
                             childUpdates.put(key, datas);
                             contentsPathRef.updateChildren(childUpdates);
 
-                            //送信終わったら
                             activity.size=0;
+                        }else{
+                            //選択してくれ
                         }
                     }else {
                         //大きすぎ

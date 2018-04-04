@@ -127,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                     String PostCount = "0";
                     String Evaluation = "0";
                     String EvaluationPeople = "0";
+                    String FavArea = "未入力";
+                    String Comment = "";
 
                     key = userRef.push().getKey();
 
@@ -139,6 +141,8 @@ public class LoginActivity extends AppCompatActivity {
                     data.put("PostCount",PostCount);
                     data.put("Evaluation",Evaluation);
                     data.put("EvaluationPeople",EvaluationPeople);
+                    data.put("FavArea",FavArea);
+                    data.put("Comment",Comment);
 
                     Map<String,Object> childUpdates = new HashMap<>();
                     childUpdates.put(key,data);

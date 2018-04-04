@@ -6,4 +6,5 @@ package jp.techacademy.son.connectthethings;
 
 public class Const {
     public static final String UsersPATH = "users";
+    public static final String ContentsPATH="contentsPATH";
 }

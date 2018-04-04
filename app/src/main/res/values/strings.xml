@@ -2,6 +2,7 @@
     <string name="app_name">Connect the things</string>
 
     <string-array name="list">
+        <item>分野を選択</item>
         <item>裁縫</item>
         <item>手芸</item>
         <item>絵</item>

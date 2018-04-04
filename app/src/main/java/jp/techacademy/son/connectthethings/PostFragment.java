@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -104,10 +105,10 @@ public class PostFragment extends Fragment {
                 bmp.compress(Bitmap.CompressFormat.JPEG, 80, baos);
                 String bitmapString = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
 
-
                 Contents = contentsEditText.getText().toString();
                 area = (String)spinner.getSelectedItem();
                 idx = spinner.getSelectedItemPosition();
+
                 String share = "0";
                 String good = "0";
                 String negotiation ="0";
@@ -134,15 +135,25 @@ public class PostFragment extends Fragment {
                             childUpdates.put(key, datas);
                             contentsPathRef.updateChildren(childUpdates);
 
+                            contentsEditText.getText().clear();
+                            selectedImageView.setImageDrawable(null);
+
+                            //送信完了
+                            Snackbar.make(v, "送信が完了しました", Snackbar.LENGTH_LONG).show();
+
+
                             activity.size=0;
                         }else{
                             //選択してくれ
+                            Snackbar.make(v, "分野を選択してください", Snackbar.LENGTH_LONG).show();
                         }
                     }else {
                         //大きすぎ
+                        Snackbar.make(v, "画像の容量が大き過ぎます", Snackbar.LENGTH_LONG).show();
                     }
                 }else{
                     //画像を選択してください
+                    Snackbar.make(v, "画像を選択してください", Snackbar.LENGTH_LONG).show();
                 }
 
             }

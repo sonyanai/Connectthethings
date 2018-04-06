@@ -148,7 +148,6 @@ public class PostFragment extends Fragment {
                 String timeString = String.format("%02d", hour) + ":" + String.format("%02d", minute);
                 String time = dateString + timeString;
 
-                //画像取得spinner取得contents取得データベースに投げる
 
                 MainActivity activity = (MainActivity)getActivity();
                 if(activity.size>0){

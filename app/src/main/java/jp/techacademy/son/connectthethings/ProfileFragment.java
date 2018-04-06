@@ -35,6 +35,7 @@ public class ProfileFragment extends Fragment {
 
     ImageView iconImageView;
     TextView FavAreaTextView;
+    TextView UserNameTextView;
     TextView FollowTextView;
     TextView FollowerTextView;
     TextView EvaluationTextView;
@@ -63,9 +64,10 @@ public class ProfileFragment extends Fragment {
 
         iconImageView = (ImageView)v.findViewById(R.id.iconImageView);
         FavAreaTextView = (TextView)v.findViewById(R.id.FavAreaTextView);
+        UserNameTextView = (TextView)v.findViewById(R.id.userNameTextView);
         FollowTextView = (TextView)v.findViewById(R.id.FollowTextView);
         FollowerTextView = (TextView)v.findViewById(R.id.FollowerTextView);
-        EvaluationTextView = (TextView)v.findViewById(R.id.FollowTextView);
+        EvaluationTextView = (TextView)v.findViewById(R.id.EvaluationTextView);
         EvaluationPeopleTextView = (TextView)v.findViewById(R.id.EvaluationPeopleTextView);
         commentTextView = (TextView)v.findViewById(R.id.commentTextView);
         PersonalList = (ListView)v.findViewById(R.id.PersonalList);

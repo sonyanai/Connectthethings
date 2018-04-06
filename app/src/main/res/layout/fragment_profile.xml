@@ -21,10 +21,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/userNameTextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/iconImageView"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/iconImageView"
         android:layout_toRightOf="@+id/iconImageView"
-        android:padding="15dp"
-        android:text="hyouka"
         android:id="@+id/FollowTextView"/>
     <TextView
         android:layout_width="wrap_content"
@@ -35,6 +40,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/FollowTextView"
         android:layout_above="@+id/FollowTextView"
         android:id="@+id/EvaluationTextView"/>
     <TextView
@@ -45,14 +51,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/FollowTextView"
-        android:id="@+id/commentTextView"/>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_weight="1"
+        android:layout_below="@+id/userNameTextView"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/commentTextView"/>
+        android:layout_marginLeft="15dp"
+        android:id="@+id/commentTextView"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/commentTextView"/>
+
+    </LinearLayout>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

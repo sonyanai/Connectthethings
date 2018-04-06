@@ -2,7 +2,9 @@ package jp.techacademy.son.connectthethings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,8 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -109,48 +114,66 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // 成功した場合
                     // ログインを行う
-                    String email = mEmailEditText.getText().toString();
-                    String password = mPasswordEditText.getText().toString();
-                    login(email, password);
-
-                    View view = findViewById(android.R.id.content);
-                    Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
-
                     FirebaseUser user = mAuth.getCurrentUser();
-                    String mUid = user.getUid();
                     userRef = mDataBaseReference.child(Const.UsersPATH);
-                    UserName = UserNameEditText.getText().toString();
-                    Map<String,String> data = new HashMap<String,String>();
 
-                    String Follow = "0";
-                    String Follower = "0";
-                    String PostCount = "0";
-                    String Evaluation = "0";
-                    String EvaluationPeople = "0";
-                    String FavArea = "未入力";
-                    String Comment = "未入力";
-                    String iconBitmapString = "未設定";
+                    if (mIsCreateAccount) {
+                        // アカウント作成の時は表示名をFirebaseに保存する
+                        String email = mEmailEditText.getText().toString();
+                        String password = mPasswordEditText.getText().toString();
+                        login(email, password);
+
+                        View view = findViewById(android.R.id.content);
+                        Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
 
 
+                        String mUid = user.getUid();
 
-                    data.put("mUid",mUid);
-                    data.put("UserName",UserName);
-                    data.put("Follow",Follow);
-                    data.put("Follower",Follower);
-                    data.put("PostCount",PostCount);
-                    data.put("Evaluation",Evaluation);
-                    data.put("EvaluationPeople",EvaluationPeople);
-                    data.put("FavArea",FavArea);
-                    data.put("Comment",Comment);
-                    data.put("IconBitmapString",iconBitmapString);
+                        UserName = UserNameEditText.getText().toString();
+                        Map<String,String> data = new HashMap<String,String>();
 
-                    Map<String,Object> childUpdates = new HashMap<>();
-                    childUpdates.put(mUid,data);
-                    userRef.updateChildren(childUpdates);
+                        String Follow = "0";
+                        String Follower = "0";
+                        String PostCount = "0";
+                        String Evaluation = "0";
+                        String EvaluationPeople = "0";
+                        String FavArea = "未入力";
+                        String Comment = "未入力";
+                        String iconBitmapString = "未設定";
 
 
 
+                        data.put("mUid",mUid);
+                        data.put("UserName",UserName);
+                        data.put("Follow",Follow);
+                        data.put("Follower",Follower);
+                        data.put("PostCount",PostCount);
+                        data.put("Evaluation",Evaluation);
+                        data.put("EvaluationPeople",EvaluationPeople);
+                        data.put("FavArea",FavArea);
+                        data.put("Comment",Comment);
+                        data.put("IconBitmapString",iconBitmapString);
 
+                        Map<String,Object> childUpdates = new HashMap<>();
+                        childUpdates.put(mUid,data);
+                        userRef.updateChildren(childUpdates);
+
+
+                        // 表示名をPrefarenceに保存する
+                        saveName(UserName);
+
+                    } else {
+                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                Map data = (Map) snapshot.getValue();
+                                saveName((String)data.get("name"));
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError firebaseError) {
+                            }
+                        });
+                    }
 
                 } else {
 
@@ -260,6 +283,14 @@ public class LoginActivity extends AppCompatActivity {
             mRewardedVideoAd.show();
         }*/
 
+    }
+
+    private void saveName(String name) {
+        // Preferenceに保存する
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Const.NameKEY, name);
+        editor.commit();
     }
 
     /*private void loadRewardedVideoAd() {

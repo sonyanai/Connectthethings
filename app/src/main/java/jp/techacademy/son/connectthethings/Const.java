@@ -7,4 +7,6 @@ package jp.techacademy.son.connectthethings;
 public class Const {
     public static final String UsersPATH = "users";
     public static final String ContentsPATH="contentsPATH";
+
+    public static final String NameKEY = "name"; // Preferenceに表示名を保存する時のキー
 }

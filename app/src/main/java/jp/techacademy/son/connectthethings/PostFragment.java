@@ -1,13 +1,16 @@
 package jp.techacademy.son.connectthethings;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
@@ -26,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +57,12 @@ public class PostFragment extends Fragment {
     DatabaseReference databaseReference;
     DatabaseReference contentsPathRef;
 
+    final Calendar calendar = Calendar.getInstance();
+    final int year = calendar.get(Calendar.YEAR);
+    final int month = calendar.get(Calendar.MONTH);
+    final int day = calendar.get(Calendar.DAY_OF_MONTH);
+    final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+    final int minute = calendar.get(Calendar.MINUTE);
 
 
     @Override
@@ -127,8 +137,17 @@ public class PostFragment extends Fragment {
                 String share = "0";
                 String good = "0";
                 String negotiation ="0";
-                String time = "0";
                 String Exclusion = "0";
+                String area = (String)spinner.getSelectedItem();
+
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                String userName = sp.getString(Const.NameKEY, "");
+
+
+                String dateString = year + "/" + String.format("%02d", (month + 1)) + "/" + String.format("%02d", day);
+                String timeString = String.format("%02d", hour) + ":" + String.format("%02d", minute);
+                String time = dateString + timeString;
+
                 //画像取得spinner取得contents取得データベースに投げる
 
                 MainActivity activity = (MainActivity)getActivity();
@@ -146,6 +165,8 @@ public class PostFragment extends Fragment {
                             datas.put("bitmapString",bitmapString);
                             datas.put("Exclusion",Exclusion);
                             datas.put("mUid",mUid);
+                            datas.put("userName" ,userName);
+                            datas.put("area" ,area);
 
                             Map<String, Object> childUpdates = new HashMap<>();
                             childUpdates.put(key, datas);

@@ -1,6 +1,9 @@
 package jp.techacademy.son.connectthethings;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +85,11 @@ public class ContentsArrayListAdapter extends BaseAdapter {
         holder.timeTextView.setText(mTime);
         holder.contentsTextView.setText(mContents);
 
+        byte[] bytes = Base64.decode(mBitmapString,Base64.DEFAULT);
+        if(bytes.length != 0){
+            Bitmap image = BitmapFactory.decodeByteArray(bytes,0,bytes.length).copy(Bitmap.Config.ARGB_8888,true);
+            holder.imageTextView.setImageBitmap(image);
+        }
 
         holder.userNameTextView.setText(mUserName);
         holder.areaTextView.setText(mArea);

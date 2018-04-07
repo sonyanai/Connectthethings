@@ -45,8 +45,6 @@ public class ProfileFragment extends Fragment {
     ListView PersonalList;
     String mUid;
     String mImage;
-    userData userdata;
-    contentsData contentsData;
     public ArrayList<userData> mUserDataArrayList;
     public ArrayList<contentsData> mContentsDataArrayList;
     private ContentsArrayListAdapter bAdapter;
@@ -74,7 +72,7 @@ public class ProfileFragment extends Fragment {
             final String area = (String) map.get("area");
 
 
-            contentsData = new contentsData( share, good, negotiation, time, contents, bitmapString, exclusion, mUid, UserName, area );
+            contentsData contentsData = new contentsData( share, good, negotiation, time, contents, bitmapString, exclusion, mUid, UserName, area );
             mContentsDataArrayList.add(contentsData);
 
             bAdapter.setContentsDataArrayList(mContentsDataArrayList);
@@ -118,7 +116,7 @@ public class ProfileFragment extends Fragment {
             final String Comment = (String) map.get("Comment");
             final String IconBitmapString = (String) map.get("IconBitmapString");
 
-            userdata = new userData(mUid, UserName, Follow, Follower, PostCount, Evaluation, EvaluationPeople, FavArea, Comment,IconBitmapString);
+            userData userdata = new userData(mUid, UserName, Follow, Follower, PostCount, Evaluation, EvaluationPeople, FavArea, Comment,IconBitmapString);
             mUserDataArrayList.add(userdata);
             for(userData aaa : mUserDataArrayList){
                 if (userdata.getUid()==mUid){

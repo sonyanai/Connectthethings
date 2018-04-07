@@ -47,7 +47,7 @@ public class PostFragment extends Fragment {
     Button sendButton;
     String Contents;
     String area;
-    String bitmapString;
+    //String bitmapString;
     int idx;
     String key;
     String mUid;
@@ -125,7 +125,10 @@ public class PostFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Bitmap bmp = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
+                BitmapDrawable drawable = (BitmapDrawable) selectedImageView.getDrawable();
+                Bitmap bmp = drawable.getBitmap();
+
+                //Bitmap bmp = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 80, baos);
                 String bitmapString = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
@@ -150,6 +153,8 @@ public class PostFragment extends Fragment {
 
 
                 MainActivity activity = (MainActivity)getActivity();
+
+
                 if(activity.size>0){
                     if (activity.size<6000000){
                         if (idx!=0){

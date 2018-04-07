@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ class ViewHolder {
     TextView userNameTextView;
     TextView areaTextView;
     TextView contentsTextView;
-    TextView imageTextView;
+    ImageView imageTextView;
     TextView timeTextView;
     TextView shareCountTextView;
     TextView goodCountTextView;
@@ -62,7 +63,7 @@ public class ContentsArrayListAdapter extends BaseAdapter {
             holder.userNameTextView = (TextView) convertView.findViewById(R.id.userNameTextView);
             holder.areaTextView = (TextView) convertView.findViewById(R.id.areaTextView);
             holder.contentsTextView = (TextView) convertView.findViewById(R.id.contentsTextView);
-            holder.imageTextView = (TextView) convertView.findViewById(R.id.contentsImageView);
+            holder.imageTextView = (ImageView) convertView.findViewById(R.id.contentsImageView);
             holder.timeTextView = (TextView) convertView.findViewById(R.id.timeTextView);
             holder.shareCountTextView = (TextView) convertView.findViewById(R.id.shareCountTextView);
             holder.goodCountTextView = (TextView) convertView.findViewById(R.id.goodCountTextView);
@@ -75,21 +76,17 @@ public class ContentsArrayListAdapter extends BaseAdapter {
         }
 
 
+        holder.shareCountTextView.setText(mShare);
+        holder.goodCountTextView.setText(mGood);
+        holder.negotiationCountTextView.setText(mNegotiation);
+        holder.timeTextView.setText(mTime);
+        holder.contentsTextView.setText(mContents);
 
-/*
-        if(mUserName!=null){
-            holder.companyTextView.setText(mCompanyName);
-        }
-        if(mBlackName!=null){
-            holder.blackNameTextView.setText(mBlackName);
-        }
-        if(mCase!=null){
-            holder.caseTextView.setText(mCase);
-        }
-        if(mDate!=null){
-            holder.dateTextView.setText(mDate);
-        }
-*/
+
+        holder.userNameTextView.setText(mUserName);
+        holder.areaTextView.setText(mArea);
+
+
 
         return convertView;
     }

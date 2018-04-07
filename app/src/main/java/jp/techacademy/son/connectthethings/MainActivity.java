@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -18,6 +19,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +27,7 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -258,12 +261,39 @@ public class MainActivity extends AppCompatActivity {
             Bitmap image;
             try {
                 ContentResolver contentResolver = getContentResolver();
+
+                //サイズを取得する
+                size=0;
+                String abc = getPath(this,uri);
+                File fileSize = new File(abc);
+                size = fileSize.length();
+
                 InputStream inputStream = contentResolver.openInputStream(uri);
                 image = BitmapFactory.decodeStream(inputStream);
                 inputStream.close();
             } catch (Exception e) {
                 return;
             }
+
+            /*
+
+             size = 0;
+                        //エラーが出なかった時にしたい処理
+                        ClipData.Item item = clipData.getItemAt(0);
+
+                        uri = item.getUri();
+
+                        //サイズを取得する
+                        String abc = getPath(this,uri);
+                        File fileSize = new File(abc);
+                        size = fileSize.length();
+                        InputStream in = getContentResolver().openInputStream(uri);
+                        Bitmap img = BitmapFactory.decodeStream(in);
+                        //ファイルを開いたら閉じなければならない(書き込むときはtry-catch}のあとに書く)
+                        in.close();
+
+            */
+
 
             // 取得したBimapの長辺を500ピクセルにリサイズする
             int imageWidth = image.getWidth();
@@ -277,6 +307,11 @@ public class MainActivity extends AppCompatActivity {
 
             // BitmapをImageViewに設定する
             PostFragment.selectedImageView.setImageBitmap(resizedImage);
+
+
+
+
+
 
             mPictureUri = null;
 

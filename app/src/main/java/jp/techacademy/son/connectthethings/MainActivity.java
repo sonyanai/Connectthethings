@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user;
     Uri uri;
     public long size;
+    Uri mPictureUri;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -239,6 +241,52 @@ public class MainActivity extends AppCompatActivity {
     //選択した結果を受け取る
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHOOSER_REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            if (resultCode != RESULT_OK) {
+                if (mPictureUri != null) {
+                    getContentResolver().delete(mPictureUri, null, null);
+                    mPictureUri = null;
+                }
+                return;
+            }
+
+            // 画像を取得
+            Uri uri = (data == null || data.getData() == null) ? mPictureUri : data.getData();
+
+            // URIからBitmapを取得する
+            Bitmap image;
+            try {
+                ContentResolver contentResolver = getContentResolver();
+                InputStream inputStream = contentResolver.openInputStream(uri);
+                image = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
+            } catch (Exception e) {
+                return;
+            }
+
+            // 取得したBimapの長辺を500ピクセルにリサイズする
+            int imageWidth = image.getWidth();
+            int imageHeight = image.getHeight();
+            float scale = Math.min((float) 500 / imageWidth, (float) 500 / imageHeight); // (1)
+
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale);
+
+            Bitmap resizedImage =  Bitmap.createBitmap(image, 0, 0, imageWidth, imageHeight, matrix, true);
+
+            // BitmapをImageViewに設定する
+            PostFragment.selectedImageView.setImageBitmap(resizedImage);
+
+            mPictureUri = null;
+
+
+
+
+
+/*
+
+
             //選択されたのがnullでない場合
             if (data.getData() != null) {
 
@@ -275,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
                 //ここで動画取得
                 Log.d("aaa","動画取得");
             }
+            */
         }
     }
 

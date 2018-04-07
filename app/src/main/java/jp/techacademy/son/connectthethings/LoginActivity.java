@@ -223,10 +223,13 @@ public class LoginActivity extends AppCompatActivity {
                 InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
+
+
                 String email = mEmailEditText.getText().toString();
                 String password = mPasswordEditText.getText().toString();
+                UserName = UserNameEditText.getText().toString();
 
-                if (email.length() != 0 && password.length() >= 6) {
+                if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
                     // ログイン時に表示名を保存するようにフラグを立てる
                     mIsCreateAccount = true;
 
@@ -249,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmailEditText.getText().toString();
                 String password = mPasswordEditText.getText().toString();
 
-                if (email.length() != 0 && password.length() >= 6) {
+                if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
                     // フラグを落としておく
                     mIsCreateAccount = false;
 

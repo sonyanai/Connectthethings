@@ -177,6 +177,10 @@ public class ProfileFragment extends Fragment {
                 //許可状態確認して画像取得してリサイズまでしてある
                 activity.onSelfCheck();
 
+
+
+                /*
+
                 BitmapDrawable drawable = (BitmapDrawable) iconImageView.getDrawable();
                 Bitmap bmp = drawable.getBitmap();
 
@@ -186,7 +190,7 @@ public class ProfileFragment extends Fragment {
                 String bitmapString = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
 
                 //ここでデータの書き換え
-
+*/
 
 
 

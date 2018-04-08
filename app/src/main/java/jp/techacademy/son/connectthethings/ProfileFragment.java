@@ -199,13 +199,6 @@ public class ProfileFragment extends Fragment {
 
 
 
-
-        //イベントリスナーで値を引っ張ってくる
-
-/*
-
-
-*/
     }
 
 

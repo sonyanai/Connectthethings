@@ -57,6 +57,7 @@ public class TimeLineFragment extends Fragment {
             final String area = (String) map.get("area");
 
 
+
             contentsData contentsData = new contentsData( share, good, negotiation, time, contents, bitmapString, exclusion, mUid, UserName, area );
             mContentsDataArrayList.add(contentsData);
 

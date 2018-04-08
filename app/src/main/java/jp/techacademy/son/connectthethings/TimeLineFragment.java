@@ -28,8 +28,7 @@ public class TimeLineFragment extends Fragment {
     public ArrayList<contentsData> mContentsDataArrayList;
     DatabaseReference databaseReference;
     DatabaseReference userRef;
-    //DatabaseReference contentsRef;
-    String aaa = "0";
+    DatabaseReference contentsRef;
     private ContentsArrayListAdapter bAdapter;
     ListView ContentsList;
 
@@ -93,7 +92,7 @@ public class TimeLineFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userRef = databaseReference.child(Const.UsersPATH);
-        //contentsRef = databaseReference.child(Const.ContentsPATH).child(aaa);
+        contentsRef = databaseReference.child(Const.ContentsPATH);
         mUidArrayList = new ArrayList<String>();
         mContentsDataArrayList = new ArrayList<contentsData>();
         ContentsList = (ListView)v.findViewById(R.id.ContentsList);
@@ -107,52 +106,9 @@ public class TimeLineFragment extends Fragment {
 
 
 
-        //EventListenerの設定と初期化
-        ChildEventListener uEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(final DataSnapshot dataSnapshot, String s) {
-                HashMap map = (HashMap) dataSnapshot.getValue();
-                final String mUid = (String) map.get("mUid");
-                final String UserName = (String) map.get("UserName");
-                final String Follow = (String) map.get("Follow");
-                final String Follower = (String) map.get("Follower");
-                final String PostCount = (String) map.get("PostCount");
-                final String Evaluation = (String) map.get("Evaluation");
-                final String EvaluationPeople = (String) map.get("EvaluationPeople");
-                final String FavArea = (String) map.get("FavArea");
-                final String Comment = (String) map.get("Comment");
-                final String IconBitmapString = (String) map.get("IconBitmapString");
 
-                userData userdata = new userData(mUid, UserName, Follow, Follower, PostCount, Evaluation, EvaluationPeople, FavArea, Comment,IconBitmapString);
-                //mUidArrayList.add(userdata.getUid());
-
-                aaa = userdata.getUid();
-
-                //contentsRef.addChildEventListener(bEventListener);
-                DatabaseReference contentsRef =  databaseReference.child(Const.ContentsPATH).child(aaa);
-                contentsRef.addChildEventListener(bEventListener);
-
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-
-        };
-
-
-
-        userRef.addChildEventListener(uEventListener);
+       // userRef.addChildEventListener(uEventListener);
+        contentsRef.addChildEventListener(bEventListener);
 
 /*
 

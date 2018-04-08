@@ -40,6 +40,14 @@ public class LoginActivity extends AppCompatActivity {
 
     String key;
     String UserName;
+    String Follow;
+    String Follower;
+    String PostCount;
+    String Evaluation;
+    String EvaluationPeople;
+    String FavArea;
+    String Comment;
+    String iconBitmapString;
 
     FirebaseAuth mAuth;
     OnCompleteListener<AuthResult> mCreateAccountListener;
@@ -132,16 +140,16 @@ public class LoginActivity extends AppCompatActivity {
                         UserName = UserNameEditText.getText().toString();
                         Map<String,String> data = new HashMap<String,String>();
 
-                        String Follow = "0";
-                        String Follower = "0";
-                        String PostCount = "0";
-                        String Evaluation = "0";
-                        String EvaluationPeople = "0";
-                        String FavArea = "未入力";
-                        String Comment = "未入力";
-                        String iconBitmapString = "未設定";
+                        Follow = "0";
+                        Follower = "0";
+                        PostCount = "0";
+                        Evaluation = "0";
+                        EvaluationPeople = "0";
+                        FavArea = "未入力";
+                        Comment = "未入力";
+                        iconBitmapString = "未設定";
 
-
+/*
 
                         data.put("mUid",mUid);
                         data.put("UserName",UserName);
@@ -158,9 +166,13 @@ public class LoginActivity extends AppCompatActivity {
                         childUpdates.put(mUid,data);
                         userRef.updateChildren(childUpdates);
 
-
+*/
                         // 表示名をPrefarenceに保存する
-                        saveName(UserName);
+                        savePersonalData(UserName,mUid,Follow,Follower,PostCount,Evaluation,EvaluationPeople,FavArea,Comment,iconBitmapString);
+
+
+
+
 
                     } else {
                         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -293,6 +305,24 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(Const.NameKEY, name);
+        editor.commit();
+    }
+
+    private void savePersonalData(String name,String mUid,String followCount,String followerCount,String postCount,String evaluation,String evaluationPeople,String favArea,String comment,String iconBitmapString) {
+        // Preferenceに保存する
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Const.NameKEY, name);
+        editor.putString(Const.mUidKEY, mUid);
+        editor.putString(Const.FollowCountKEY, followCount);
+        editor.putString(Const.FollowerCountKEY, followerCount);
+        editor.putString(Const.PostCountKEY, postCount);
+        editor.putString(Const.EvaluationKEY, evaluation);
+        editor.putString(Const.EvaluationPeopleKEY,evaluationPeople );
+        editor.putString(Const.FavAreaKEY, favArea);
+        editor.putString(Const.CommentKEY, comment);
+        editor.putString(Const.IconBitmapStringKEY, iconBitmapString);
+
         editor.commit();
     }
 

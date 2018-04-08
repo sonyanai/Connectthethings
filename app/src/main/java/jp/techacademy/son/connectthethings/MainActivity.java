@@ -178,7 +178,11 @@ public class MainActivity extends AppCompatActivity {
                 if(user==null) {
                     intentLogin();
                 }else{
-                    onSelfCheck();
+                  //  onSelfCheck();
+                    PostFragment fragmentPost = new PostFragment();
+                    FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
+                    transactions.replace(R.id.container, fragmentPost);
+                    transactions.commit();
                 }
                 break;
         }
@@ -195,20 +199,22 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 // 許可されている
-                PostFragment fragmentPost = new PostFragment();
+                /*PostFragment fragmentPost = new PostFragment();
                 FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
                 transactions.replace(R.id.container, fragmentPost);
-                transactions.commit();
+                transactions.commit();*/
+                showChooser();
             } else {
                 // 許可されていないので許可ダイアログを表示する
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_CODE);
                 return;
             }
         } else {
-            PostFragment fragmentPost = new PostFragment();
+            /*PostFragment fragmentPost = new PostFragment();
             FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
             transactions.replace(R.id.container, fragmentPost);
-            transactions.commit();
+            transactions.commit();*/
+            showChooser();
         }
     }
 
@@ -307,6 +313,10 @@ public class MainActivity extends AppCompatActivity {
 
             // BitmapをImageViewに設定する
             PostFragment.selectedImageView.setImageBitmap(resizedImage);
+            ProfileFragment.iconImageView.setImageBitmap(resizedImage);
+
+
+
 
 
 

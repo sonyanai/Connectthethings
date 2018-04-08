@@ -87,7 +87,9 @@ public class PostFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         mUid = user.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        contentsPathRef = databaseReference.child(Const.ContentsPATH).child(mUid);
+        contentsPathRef = databaseReference.child(Const.ContentsPATH);
+
+        selectedImageView.setImageDrawable(null);
 
 
 
@@ -98,8 +100,8 @@ public class PostFragment extends Fragment {
 
 
                 MainActivity activity = (MainActivity)getActivity();
-                activity.showChooser();
-
+                //activity.showChooser();
+                activity.onSelfCheck();
 
 
 

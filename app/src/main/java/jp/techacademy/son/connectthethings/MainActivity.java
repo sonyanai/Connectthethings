@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Uri uri;
     public long size;
     Uri mPictureUri;
+    Bitmap aaa;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        aaa=null;
 
 /*
             // パーミッションの許可状態を確認する
@@ -276,6 +279,12 @@ public class MainActivity extends AppCompatActivity {
 
                 InputStream inputStream = contentResolver.openInputStream(uri);
                 image = BitmapFactory.decodeStream(inputStream);
+
+                Bitmap bbb = Bitmap.createBitmap(image);
+
+                PostFragment.selectedImageView.setImageBitmap(bbb);
+                ReProfileFragment.reIconImageView.setImageBitmap(bbb);
+
                 inputStream.close();
             } catch (Exception e) {
                 return;
@@ -300,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
 
             */
 
-
+/*
             // 取得したBimapの長辺を500ピクセルにリサイズする
             int imageWidth = image.getWidth();
             int imageHeight = image.getHeight();
@@ -310,11 +319,7 @@ public class MainActivity extends AppCompatActivity {
             matrix.postScale(scale, scale);
 
             Bitmap resizedImage =  Bitmap.createBitmap(image, 0, 0, imageWidth, imageHeight, matrix, true);
-
-            // BitmapをImageViewに設定する
-            PostFragment.selectedImageView.setImageBitmap(resizedImage);
-            ProfileFragment.iconImageView.setImageBitmap(resizedImage);
-
+*/
 
 
 

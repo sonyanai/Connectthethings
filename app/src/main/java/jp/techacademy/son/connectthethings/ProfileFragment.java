@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class ProfileFragment extends Fragment {
     String comment;
     ListView PersonalList;
     String mUid;
+    Button rewriteButton;
     String mImage;
     public ArrayList<contentsData> mContentsDataArrayList;
     public ArrayList<contentsData> bContentsDataArrayList;
@@ -114,6 +116,7 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile,container,false);
 
         iconImageView = (ImageView)v.findViewById(R.id.iconImageView);
+        rewriteButton = (Button)v.findViewById(R.id.rewriteButton);
         FavAreaTextView = (TextView)v.findViewById(R.id.FavAreaTextView);
         UserNameTextView = (TextView)v.findViewById(R.id.userNameTextView);
         FollowTextView = (TextView)v.findViewById(R.id.FollowTextView);
@@ -157,7 +160,7 @@ public class ProfileFragment extends Fragment {
         FavAreaTextView.setText(favArea);
         String comment = sp.getString(Const.CommentKEY, "");
         commentTextView.setText(comment);
-        String iconBitmapString = sp.getString(Const.IconBitmapStringKEY, "");
+        final String iconBitmapString = sp.getString(Const.IconBitmapStringKEY, "");
         byte[] bytes = Base64.decode(iconBitmapString,Base64.DEFAULT);
         if(bytes.length != 0){
             Bitmap image = BitmapFactory.decodeByteArray(bytes,0,bytes.length).copy(Bitmap.Config.ARGB_8888,true);
@@ -167,30 +170,14 @@ public class ProfileFragment extends Fragment {
 
         ContentsRef.addChildEventListener(bEventListener);
 
-
-
-
-        iconImageView.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.rewriteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
-                MainActivity activity = (MainActivity)getActivity();
-                //許可状態確認して画像取得してリサイズまでしてある
-                activity.onSelfCheck();
-
-
-
-                /*
-
-                BitmapDrawable drawable = (BitmapDrawable) iconImageView.getDrawable();
-                Bitmap bmp = drawable.getBitmap();
-
-                //Bitmap bmp = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-                String bitmapString = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-
-                //ここでデータの書き換え
-*/
+                ReProfileFragment fragmentReprofile = new ReProfileFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentReprofile,ReProfileFragment.TAG)
+                        .commit();
 
 
 

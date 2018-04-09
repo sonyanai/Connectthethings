@@ -53,6 +53,7 @@ public class PostFragment extends Fragment {
     String mUid;
     TextView backText;
 
+
     FirebaseUser user;
     DatabaseReference databaseReference;
     DatabaseReference contentsPathRef;

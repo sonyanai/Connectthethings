@@ -12,6 +12,12 @@
         android:background="#FFFF00"
         android:padding="10dp"
         android:id="@+id/iconImageView"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="プロフィールを変更"
+        android:layout_toRightOf="@+id/FollowerTextView"
+        android:id="@+id/rewriteButton"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

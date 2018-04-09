@@ -99,7 +99,6 @@ public class ReProfileFragment extends Fragment{
                 BitmapDrawable drawable = (BitmapDrawable) reIconImageView.getDrawable();
                 Bitmap bmp = drawable.getBitmap();
 
-                //Bitmap bmp = ((BitmapDrawable)selectedImageView.getDrawable()).getBitmap();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 80, baos);
                 String bitmapString = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);

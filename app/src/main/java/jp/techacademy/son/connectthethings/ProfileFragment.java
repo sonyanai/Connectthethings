@@ -46,11 +46,9 @@ public class ProfileFragment extends Fragment {
     TextView EvaluationTextView;
     TextView EvaluationPeopleTextView;
     TextView commentTextView;
-    String comment;
     ListView PersonalList;
     String mUid;
     Button rewriteButton;
-    String mImage;
     public ArrayList<contentsData> mContentsDataArrayList;
     public ArrayList<contentsData> bContentsDataArrayList;
     private ContentsArrayListAdapter bAdapter;

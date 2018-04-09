@@ -43,12 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public ProfileFragment fragmentProfile;
     public SearchFragment fragmentSearch;
     public TimeLineFragment fragmentTimeLine;
-    public PostFragment fragmentPost;
     private FirebaseUser user;
     Uri uri;
     public long size;
     Uri mPictureUri;
-    Bitmap aaa;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -107,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        aaa=null;
 
 /*
             // パーミッションの許可状態を確認する
@@ -201,11 +198,7 @@ public class MainActivity extends AppCompatActivity {
         // パーミッションの許可状態を確認する
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                // 許可されている
-                /*PostFragment fragmentPost = new PostFragment();
-                FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
-                transactions.replace(R.id.container, fragmentPost);
-                transactions.commit();*/
+
                 showChooser();
             } else {
                 // 許可されていないので許可ダイアログを表示する
@@ -213,10 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         } else {
-            /*PostFragment fragmentPost = new PostFragment();
-            FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
-            transactions.replace(R.id.container, fragmentPost);
-            transactions.commit();*/
             showChooser();
         }
     }
@@ -290,24 +279,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            /*
 
-             size = 0;
-                        //エラーが出なかった時にしたい処理
-                        ClipData.Item item = clipData.getItemAt(0);
-
-                        uri = item.getUri();
-
-                        //サイズを取得する
-                        String abc = getPath(this,uri);
-                        File fileSize = new File(abc);
-                        size = fileSize.length();
-                        InputStream in = getContentResolver().openInputStream(uri);
-                        Bitmap img = BitmapFactory.decodeStream(in);
-                        //ファイルを開いたら閉じなければならない(書き込むときはtry-catch}のあとに書く)
-                        in.close();
-
-            */
 
 /*
             // 取得したBimapの長辺を500ピクセルにリサイズする
